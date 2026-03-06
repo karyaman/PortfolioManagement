@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+<p style="text-align:center;"><a href="{{ url_for('logout') }}">Logout</a></p>
+
+<h2>Users</h2>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Portfolio Name</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.portfolio.name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Mutual Funds</h2>
+<table>
+    <tr>
+        <th>MF Name</th>
+        <th>User</th>
+        <th>Portfolio</th>
+        <th>Stock Count</th>
+    </tr>
+    {% for mf in mutual_funds %}
+    <tr>
+        <td>{{ mf.name }}</td>
+        <td>{{ mf.portfolio.user.username }}</td>
+        <td>{{ mf.portfolio.name }}</td>
+        <td>{{ mf.stocks|length }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Stocks</h2>
+<p><a href="{{ url_for('add_stock') }}">Add Stock</a></p>
+
+<table>
+    <tr>
+        <th>Stock Name</th>
+        <th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {% for stock in stocks %}
+    <tr>
+        <td>{{ stock.name }}</td>
+        <td>{{ stock.price }}</td>
+        <td><a href="{{ url_for('edit_stock', stock_id=stock.id) }}">Edit</a></td>
+        <td><a href="{{ url_for('delete_stock', stock_id=stock.id) }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

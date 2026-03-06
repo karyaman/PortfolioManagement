@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MF Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>Mutual Fund: {{ mf.name }}</h1>
+
+<p style="text-align:center;">
+    <a href="{{ url_for('stock_dashboard', mf_id=mf.id) }}">Add Stock</a> |
+    <a href="{{ url_for('user_dashboard') }}">Back</a>
+</p>
+
+<table>
+    <tr>
+        <th>Stock Name</th>
+        <th>Price</th>
+        <th>Remove</th>
+    </tr>
+    {% for stock in mf.stocks %}
+    <tr>
+        <td>{{ stock.name }}</td>
+        <td>{{ stock.price }}</td>
+        <td>
+            <a href="{{ url_for('remove_stock_from_mf', mf_id=mf.id, stock_id=stock.id) }}">
+                Remove
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

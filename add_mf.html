@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add MF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2>Add Mutual Fund</h2>
+
+{% for msg in get_flashed_messages() %}
+<div class="flash">{{ msg }}</div>
+{% endfor %}
+
+<form method="POST">
+    <label>MF Name</label>
+    <input type="text" name="name" required>
+
+    <button type="submit">Create</button>
+</form>
+
+</body>
+</html>

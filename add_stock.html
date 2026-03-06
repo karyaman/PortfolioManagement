@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Stock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2>Add Stock</h2>
+
+{% for msg in get_flashed_messages() %}
+<div class="flash">{{ msg }}</div>
+{% endfor %}
+
+<form method="POST">
+    <label>Stock Name</label>
+    <input type="text" name="name" required>
+
+    <label>Price</label>
+    <input type="number" step="0.01" name="price" required>
+
+    <button type="submit">Add</button>
+</form>
+
+</body>
+</html>

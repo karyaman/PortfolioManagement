@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stocks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2>Available Stocks</h2>
+
+{% for msg in get_flashed_messages() %}
+<div class="flash">{{ msg }}</div>
+{% endfor %}
+
+<table>
+    <tr>
+        <th>Stock Name</th>
+        <th>Price</th>
+        <th>Add</th>
+    </tr>
+    {% for stock in stocks %}
+    <tr>
+        <td>{{ stock.name }}</td>
+        <td>{{ stock.price }}</td>
+        <td>
+            <a href="{{ url_for('add_stock_to_mf', mf_id=mf.id, stock_id=stock.id) }}">
+                Add to MF
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p style="text-align:center;">
+    <a href="{{ url_for('mf_dashboard', mf_id=mf.id) }}">Back to MF</a>
+</p>
+
+</body>
+</html>
